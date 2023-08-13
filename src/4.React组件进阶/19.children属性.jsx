@@ -12,19 +12,6 @@ function ListItem ({children}) {
   )
 }
 
-// class ListItem extends React.Component{
-//   render () {
-//     return (
-//       <div>
-//         <h3>{this.props.name}</h3>
-//         <p>{this.props.price}</p>
-//         <p>{this.props.info}</p>
-//         <button onClick={() => this.props.delHandler(this.props.id)}>删除</button>
-//       </div>
-//     )
-//   }
-// }
-
 // 数据提供者
 class App extends React.Component{
   state = {
