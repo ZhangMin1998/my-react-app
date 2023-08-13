@@ -4,8 +4,8 @@ import React from 'react'
 // 函数组件
 // react事件采用驼峰命名法
 function Hello() {
-  const clickHandler = () => {
-    console.log(66666)
+  const clickHandler = (e) => {
+    console.log(e, 66666)
   }
   return <div onClick={clickHandler}>hello</div>
 }
