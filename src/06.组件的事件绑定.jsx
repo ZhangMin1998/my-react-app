@@ -16,6 +16,11 @@ class HelloComponent extends React.Component{
   // 事件回调函数 (标准写法 可以避免this指向问题)
   // 回调函数中的this指向是当前的组件实例对象
   clickHandler = () => {
+    // 这里的this指向的是正确的当前的组件实例对象 
+    console.log(this)
+  }
+  clickHandler1 () {
+    // 这里的this 不指向当前的组件实例对象而指向undefined 存在this丢失问题
     console.log(this)
   }
   render () {

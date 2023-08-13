@@ -21,11 +21,16 @@ function Hello() {
 class HelloComponent extends React.Component{
   // 事件回调函数 (标准写法 可以避免this指向问题)
   // 回调函数中的this指向是当前的组件实例对象
-  clickHandler = () => {
-    console.log(this)
+  clickHandler = (e, num) => {
+    console.log(this, e, num)
   }
   render () {
-    return <div onClick={this.clickHandler} style={{fontSize: '30px',color: 'red'}}>这是我第一个类组件</div>
+    return (
+      <>
+        <button onClick={(e) => this.clickHandler(e, '123')}>click me</button>
+        {/* <div onClick={this.clickHandler} style={{fontSize: '30px',color: 'red'}}>这是我第一个类组件</div> */}
+      </>
+    )
   }
 }
 
