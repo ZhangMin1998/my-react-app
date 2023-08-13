@@ -40,6 +40,9 @@ class App extends React.Component{
   }
   getSonMsg = (sonMsg) => {
     console.log(sonMsg)
+    this.setState({
+      message: sonMsg
+    })
   }
   render () {
     return (
