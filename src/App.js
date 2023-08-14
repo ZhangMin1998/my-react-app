@@ -1,16 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Test ({list}) {
+function Test () {
   return (
     <div>
-      {list.map(item => <p key={item}>{item}</p>)}
+      this is test
     </div>
   )
 }
+// function Test ({pageSize = 30}) { // 推荐
+//   return (
+//     <div>
+//       this is test
+//     </div>
+//   )
+// }
 Test.propTypes = { // 他妈的 这里小写
-  // 定义规则
-  list: PropTypes.array.isRequired
+  list: PropTypes.array
+}
+Test.defaultProps = {
+  pageSize: 10
 }
 
 class App extends React.Component{
@@ -20,7 +29,7 @@ class App extends React.Component{
   render () {
     return (
       <div>
-        <Test list={[1,2,3,4]} />
+        <Test pageSize={20} />
       </div>
     )
   }
@@ -48,3 +57,6 @@ export default App
 // 	color: PropTypes.string,
 // 	fontSize: PropTypes.number
 // })
+
+// 通过 defaultProps 可以给组件的props设置默认值，在未传入props的时候生效
+// 推荐使用函数参数默认值
