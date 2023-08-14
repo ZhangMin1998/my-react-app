@@ -1,35 +1,21 @@
+// 只有类组件才有生命周期（类组件 实例化  函数组件 不需要实例化）
 import React from 'react'
-import PropTypes from 'prop-types'
 
-class Test extends React.Component{
-  // 类静态属性声明 推荐
-  static defaultProps = {
-    pageSize: 10
-  }
-  render () {
-    return (
-      <div>
-        this is test, pageSize: {this.props.pageSize}
-      </div>
-    )
-  }
-}
-Test.propTypes = { // 他妈的 这里小写
-  list: PropTypes.array
-}
-// Test.defaultProps = { // 也可以
-//   pageSize: 10
-// }
-
+// 钩子顺序  constructor -- render -- componentDidMount
 class App extends React.Component{
-  state = {
-    
+  constructor () {
+    super()
+    console.log('constructor')
+  }
+  componentDidMount () {
+    console.log('componentDidMount')
+    // ajsx 操作dom
   }
   render () {
+    console.log('render')
     return (
       <div>
-        <Test/>
-        {/* <Test pageSize={20} /> */}
+        666
       </div>
     )
   }
@@ -37,27 +23,7 @@ class App extends React.Component{
 
 export default App
 
-// props校验
-// 1. 安装属性校验包：yarn add prop-types
-// 2. 导入prop-types 包
-// 3. 使用 组件名.propTypes = {} 给组件添加校验规则
-
-// props常见的规则
-// 1. 常见类型：array、bool、func、number、object、string, symbol
-// 2. React元素类型：element
-// 3. 必填项：isRequired
-// 4. 特定的结构对象：shape({})
-
-// // 常见类型
-// optionalFunc: PropTypes.func,
-// // 必填 只需要在类型后面串联一个isRequired
-// requiredFunc: PropTypes.func.isRequired,
-// // 特定结构的对象
-// optionalObjectWithShape: PropTypes.shape({
-// 	color: PropTypes.string,
-// 	fontSize: PropTypes.number
-// })
-
-// 通过 defaultProps 可以给组件的props设置默认值，在未传入props的时候生效
-// 推荐使用函数参数默认值
-// 使用类静态属性声明默认值，static defaultProps = {}
+// 钩子函数               触发时机                                        作用
+// constructor        创建组件时，最先执行，初始化的时候只执行一次         1. 初始化state  2. 创建 Ref 3. 使用 bind 解决 this 指向问题等
+// render             每次组件渲染都会触发                              渲染UI（注意： 不能在里面调用setState() )
+// componentDidMount  组件挂载（完成DOM渲染）后执行，初始化的时候执行一次   发送网络请求   2.DOM操作
