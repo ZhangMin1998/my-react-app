@@ -1,31 +1,18 @@
-// 跨组件通信Context引入createContext
 import React from 'react'
+import PropTypes from 'prop-types'
 
-// 渲染表
-function ListItem ({children}) {
-  // children()
+function Test ({list}) {
   return (
     <div>
-      {/* ListItem, {children} */}
-      ListItem, {children.map(item => item)}
+      {list.map(item => <p key={item}>{item}</p>)}
     </div>
   )
 }
+Test.propTypes = { // 他妈的 这里小写
+  // 定义规则
+  list: PropTypes.array.isRequired
+}
 
-// class ListItem extends React.Component{
-//   render () {
-//     return (
-//       <div>
-//         <h3>{this.props.name}</h3>
-//         <p>{this.props.price}</p>
-//         <p>{this.props.info}</p>
-//         <button onClick={() => this.props.delHandler(this.props.id)}>删除</button>
-//       </div>
-//     )
-//   }
-// }
-
-// 数据提供者
 class App extends React.Component{
   state = {
     
@@ -33,14 +20,7 @@ class App extends React.Component{
   render () {
     return (
       <div>
-        <ListItem>
-          {/* zm666 */}
-          {/* <p>zm6666</p> */}
-          {/* {() => console.log(666)} */}
-          {/* {<div><p>{'this is jsx'}</p></div>} */}
-          <div>this is div</div>
-          <p>this is p</p>
-        </ListItem>
+        <Test list={[1,2,3,4]} />
       </div>
     )
   }
@@ -48,10 +28,23 @@ class App extends React.Component{
 
 export default App
 
-// children属性   表示该组件的子节点，只要组件内部有子节点，props中就有该属性
-// 1. 普通文本
-// 2. 普通标签元素
-// 3. 函数 / 对象
-// 4. JSX
+// props校验
+// 1. 安装属性校验包：yarn add prop-types
+// 2. 导入prop-types 包
+// 3. 使用 组件名.propTypes = {} 给组件添加校验规则
 
-// 目的：高阶组件
+// props常见的规则
+// 1. 常见类型：array、bool、func、number、object、string, symbol
+// 2. React元素类型：element
+// 3. 必填项：isRequired
+// 4. 特定的结构对象：shape({})
+
+// // 常见类型
+// optionalFunc: PropTypes.func,
+// // 必填 只需要在类型后面串联一个isRequired
+// requiredFunc: PropTypes.func.isRequired,
+// // 特定结构的对象
+// optionalObjectWithShape: PropTypes.shape({
+// 	color: PropTypes.string,
+// 	fontSize: PropTypes.number
+// })
