@@ -1,26 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Test () {
-  return (
-    <div>
-      this is test
-    </div>
-  )
+class Test extends React.Component{
+  // 类静态属性声明 推荐
+  static defaultProps = {
+    pageSize: 10
+  }
+  render () {
+    return (
+      <div>
+        this is test, pageSize: {this.props.pageSize}
+      </div>
+    )
+  }
 }
-// function Test ({pageSize = 30}) { // 推荐
-//   return (
-//     <div>
-//       this is test
-//     </div>
-//   )
-// }
 Test.propTypes = { // 他妈的 这里小写
   list: PropTypes.array
 }
-Test.defaultProps = {
-  pageSize: 10
-}
+// Test.defaultProps = { // 也可以
+//   pageSize: 10
+// }
 
 class App extends React.Component{
   state = {
@@ -29,7 +28,8 @@ class App extends React.Component{
   render () {
     return (
       <div>
-        <Test pageSize={20} />
+        <Test/>
+        {/* <Test pageSize={20} /> */}
       </div>
     )
   }
@@ -60,3 +60,4 @@ export default App
 
 // 通过 defaultProps 可以给组件的props设置默认值，在未传入props的时候生效
 // 推荐使用函数参数默认值
+// 使用类静态属性声明默认值，static defaultProps = {}
