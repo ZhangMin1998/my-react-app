@@ -73,4 +73,4 @@ export default App
 //   console.log('副作用执行了')
 //   console.log(age) // age要加在下面一行数组里 否则有bug
 // }, [count]) 
-// 某种意义上，hook的出现 就是想不用生命周期也可以写业务代码
+// 某种意义上，hook的出现 就是想不用生命周期也可以写业务代码。
