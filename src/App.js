@@ -1,31 +1,44 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+// 在修改数据后，把count值放在页面标题中
 
 function App () {
   const [count, setCount] = useState(0)
-  const [flag, setFlag] = useState(true)
-  const [name, setName] = useState('cp')
-  const [list, setList] = useState([])
+  // document.title = `点击了${count}次`
 
-  function test () {
-    setCount(count + 1)
-    setFlag(false)
-    setName('zz')
-    setList([1,2,3])
-  }
+  useEffect(()=>{
+    // dom操作
+    document.title = `点击了${count}次`
+  })
 
   return (
     <div>
-      <p>count: {count}</p>
-      <p>flag: {flag ? 'true' : 'false'}</p>
-      <p>name: {name}</p>
-      <p>list: {list.join('-')}</p>
-      <button onClick={test}>click</button>
+      <button onClick={() => setCount(count + 1)}>click</button>
     </div>
   )
 }
 
 export default App
 
-// useState 函数可以执行多次，每次执行互相独立，每调用一次为函数组件提供一个状态 
-// useState只能出现在函数组件或者其他hook函数中 
-// 不能嵌套在if/for/其它函数中（react按照hooks的调用顺序识别每一个hook） 只能在最外层
+
+// let count = 0
+// function getNum (a, b) {
+//   count++ // 副作用
+//   return a + b
+// }
+
+// React 组件: 主作用就是根据数据(state/props)渲染 UI,除此之外都是副作用（比如，手动修改 DOM）
+
+// 常见的副作用
+// 1. 数据请求 ajax发送
+// 2. 手动修改dom
+// 3. localstorage操作
+
+// useEffect函数的作用就是为react函数组件提供副作用处理的！
+
+// 使用步骤
+// 1. 导入 useEffect 函数
+// 2. 调用 useEffect 函数，并传入回调函数
+// 3. 在回调函数中编写副作用处理（dom操作）
+// 4. 修改数据状态
+// 5. 检测副作用是否生效
