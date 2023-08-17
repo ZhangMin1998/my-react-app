@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext } from 'react'
 
 // 创建Context对象
 const Context = createContext()
@@ -16,12 +16,10 @@ function ComC() {
     <div>CCCCCC ----- {num}</div>
   )
 }
-function App() {
-  const [count, setState] = useState(20)
+function App() {  
   return (
     // 顶层组件通过Provider 提供数据    
-    <Context.Provider value={count}>
-        <button onClick={() => setState(count + 1)}>add</button>     
+    <Context.Provider value={99999}>     
         <div>666 ------ <ComA/></div>   
     </Context.Provider> 
   )
