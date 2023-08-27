@@ -46,3 +46,7 @@ function App () {
 }
 
 export default App
+
+// event 是 SyntheticEvent， 模拟出来DOm事件所有能力
+// event.nativeEvent是原生事件对象
+// 和dom事件不一样，和vue也不一样
