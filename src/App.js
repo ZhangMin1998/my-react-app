@@ -1,35 +1,14 @@
-import { createContext, useContext, useState } from 'react'
+import React from 'react'
+// import SCUDemo from './6.高级特性/1.SCUDemo'
+import SCUDemo2 from './6.高级特性/2.SCUDemo2'
 
-// 创建Context对象
-const Context = createContext()
-
-function ComA() {  
-  return (
-    <div>AAAAA ------ <ComC/></div>
-    
-  )
-}
-function ComC() {
-  // 底层组件通过useContext函数获取数据  
-  const num = useContext(Context)  
-  return (
-    <div>CCCCCC ----- {num}</div>
-  )
-}
 function App() {
-  const [count, setState] = useState(20)
   return (
-    // 顶层组件通过Provider 提供数据    
-    <Context.Provider value={count}>
-        <button onClick={() => setState(count + 1)}>add</button>     
-        <div>666 ------ <ComA/></div>   
-    </Context.Provider> 
+    <div>
+      {/* <SCUDemo/> */}
+      <SCUDemo2 />
+    </div>
   )
 }
 
 export default App
-
-// 实现步骤
-// 1. 使用createContext 创建Context对象
-// 2. 在顶层组件通过Provider 提供数据
-// 3. 在底层组件通过useContext函数获取数据
